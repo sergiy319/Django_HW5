@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     # Инициализируем метод для передачи аргументов
     def add_arguments(self, parser):
-        parser.add_arguments('-l', '--len', type=int, default=10)
+        parser.add_argument('-l', '--len', type=int, default=10)
 
     # Инициализируем метод для непосредственного хранеия команд
     def handle(self, *args, **options):
@@ -24,16 +24,15 @@ class Command(BaseCommand):
         for _ in range(options['len']):
             student = Student()
 
-            # Присваиваем рандобные значения с помощью
+            # Присваиваем рандомные значения с помощью
             # библиотеки "Faker"
-            student.id = faker.id()
             student.name = faker.name()
-            student.surname = faker.surname()
-            student.age = faker.age()
-            student.sex = faker.sex()
+            student.surname = faker.last_name()
+            student.age = faker.random_int(min=18, max=53)
+            student.sex = faker.simple_profile()['sex']
             student.address = faker.address()
-            student.description = faker.description()
-            student.birthday = faker.birthday()
+            student.description = faker.text()
+            student.birthday = faker.simple_profile()['birthdate']
             student.email = faker.email()
 
             # Сохраняем значения
