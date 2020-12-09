@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from home.forms import StudentForm
 from home.models import Student
 
 
@@ -12,4 +14,12 @@ def home(request):
 
     students = Student.objects.all()
 
-    return render(request, 'index.html', context={'students': students})
+    # Инициализируем "student_form"
+    student_form = StudentForm()
+
+    context = {
+        'students': students,
+        'form': student_form,
+    }
+
+    return render(request, 'index.html', context=context)
