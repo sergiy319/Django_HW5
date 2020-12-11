@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from home.forms import StudentForm
 from home.models import Student
@@ -9,17 +9,29 @@ def show_string(request):
 
 
 def home(request):
-    student = Student()
-    student.save()
+    # student = Student()
+    # student.save()
 
-    students = Student.objects.all()
+    if request.method == 'GET':
+        students = Student.objects.all()
 
-    # Инициализируем "student_form"
-    student_form = StudentForm()
+        student_form = StudentForm()
 
-    context = {
-        'students': students,
-        'form': student_form,
-    }
+        context = {
+            'students': students,
+            'form': student_form,
+        }
 
-    return render(request, 'index.html', context=context)
+        return render(
+            request,
+            'index.html',
+            context=context
+        )
+    elif request.method == 'POST':
+
+        student_form = StudentForm(request.POST)
+
+        if student_form.is_valid():
+            student_form.save()
+
+        return redirect('/home')
