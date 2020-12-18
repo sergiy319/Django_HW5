@@ -1,9 +1,8 @@
 from django.db import models
 
 
-# Создаём новый класс Student
-# Он будет описывать дополнительные атрибуты
-# к каждому студенту
+# Создаём класс Student. Он будет описывать
+# атрибуты к каждому студенту
 class Student(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)

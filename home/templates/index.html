@@ -22,5 +22,11 @@
 
 {% endfor %}
 
+<form method="POST" action="/home/">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+
 </body>
 </html>
