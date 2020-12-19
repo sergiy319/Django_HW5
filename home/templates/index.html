@@ -2,31 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DJANGO</title>
+    <title>students</title>
 </head>
 <body>
 
 <!--<h1>Hello {{name}}</h1>-->
 
-{% for student in students %}
+<ul>
+    {% for student in students %}
+        <li>
+            <a href="{% url 'update_students_class' id=student.id %}">
+            {{student.name}}
+            {{student.surname}}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
 
-    {{student.id}}
-    {{student.name}}
-    {{student.surname}}
-    {{student.age}}
-    {{student.sex}}
-    {{student.address}}
-    {{student.description}}
-    {{student.birthday}}
-    {{student.email}}<br>
-
-{% endfor %}
-
-<form method="POST" action="/home/">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit">
-</form>
+<!--<form method="POST" action="/home/">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form }}-->
+<!--    <input type="submit">-->
+<!--</form>-->
 
 </body>
 </html>
