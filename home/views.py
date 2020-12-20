@@ -110,7 +110,7 @@ class UpdateStudentView(View):
             context=context,
         )
 
-    def post(self, request):
+    def post(self, request, id):
 
         self.get_student(id)
 
