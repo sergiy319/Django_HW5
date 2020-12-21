@@ -11,6 +11,6 @@ class StudentForm(ModelForm):
         model = Student
         # Сохраняем в "fields" взятые из "models.py"
         # поля, которые хотим отобразить
-        fields = ['name', 'surname', 'age', 'sex', 'address',
+        fields = ['name', 'surname', 'social_url', 'age', 'sex', 'address',
                   'description', 'birthday', 'email'
                   ]

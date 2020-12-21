@@ -7,6 +7,7 @@ class Student(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     surname = models.CharField(max_length=200, blank=True, null=True)
+    social_url = models.URLField(max_length=500, blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
     sex = models.CharField(max_length=200, blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
