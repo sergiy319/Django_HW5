@@ -11,7 +11,7 @@ def show_string(request):
     return render(request, 'index.html', context={'name': 'World!'})
 
 
-def home(request):
+def home(request, *args, **kwargs):
     # student = Student()
     # student.save()
 
@@ -93,7 +93,8 @@ class UpdateStudentView(View):
         except Student.MultipleObjectsReturned:
             self.student = None
 
-    def get(self, request, id):
+    def get(self, request, id, *args, **kwargs):
+        print(kwargs)
 
         self.get_student(id)
 
