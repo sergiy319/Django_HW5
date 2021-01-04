@@ -2,6 +2,10 @@ language: python
 
 python: "3.8"
 
-install: pip install -r requirements.txt
+install:
+  - pip install --upgrade pip
+  - pip install poetry
+  - poetry install
 
-script: flake8 ./Django_HW5
+script:
+  - poetry run flake8 ./Django_HW5
