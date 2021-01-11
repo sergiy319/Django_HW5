@@ -1,8 +1,8 @@
 from django.db import models
 
 
-# Создаём класс Student. Он будет описывать
-# атрибуты к каждому студенту
+# We create a class "Student".
+# It will describe the attributes to each student.
 class Student(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)
@@ -21,24 +21,24 @@ class Student(models.Model):
     subject = models.ForeignKey('home.Subject', on_delete=models.SET_NULL, null=True)
 
 
-# Создаём класс "Teacher". Он будет
-# описывать преподавателей.
+# Create a class "Teacher".
+# It will describe the teachers.
 class Teacher(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)
-    # Связываем модель "Teacher" со студентами.
+    # Linking the Teacher model to the students.
     students = models.ManyToManyField('home.Student')
 
 
-# Создаём класс "Subject". Он будет описывать
-# предметы изучаемые студентами.
+# Create the "Subject" class.
+# It will describe the subjects studied by the students.
 class Subject(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200, blank=True, null=True)
 
 
-# Создаём класс "Book". Он будет описывать
-# зачётки, принадлежащие студентам.
+# Create a class "Book".
+# It will describe the grade books owned by the students.
 class Book(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200, blank=True, null=True)

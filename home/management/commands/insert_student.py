@@ -5,22 +5,23 @@ from faker import Faker
 from home.models import Student, Subject, Book, Teacher
 
 
-# Файл "insert_student.py" является местом,
-# где мы прописываем команды.
+# The "insert_student.py" file is
+# where we write the commands.
 
-# Тело команд составляет класс "Command".
-# Command наследуется от "BaseCommand".
+# The body of the commands is the "Command" class.
+# Command inherits from BaseCommand.
 class Command(BaseCommand):
-    # Вводим атрибут "help", который пояснит при вызове назначение "Command".
+    # Introduce the "help" attribute, which will explain
+    # the "Command" assignment when called.
     help = 'Insert new students to the system'
 
-    # Инициализируем метод для передачи аргументов.
+    # Initialize the method for passing arguments.
     def add_arguments(self, parser):
         parser.add_argument('-l', '--len', type=int, default=10)
 
-    # Инициализируем метод для непосредственного хранеия команд.
+    # Initialize the method for direct storage of commands.
     def handle(self, *args, **options):
-        # Инициализируем библиотеку "Faker".
+        # Initialize the "Faker" library.
         faker = Faker()
 
         for _ in range(options['len']):
@@ -45,20 +46,20 @@ class Command(BaseCommand):
             # student.email = faker.email()
             # student.subject = subject
             #
-            # # Сохраняем значения
+            # # Save values.
             # student.save()
 
             teacher, _ = Teacher.objects.get_or_create(name='Fedor')
             teacher.save()
 
-            # Выбираем с помощью фильтра только женский пол.
+            # Select only the female gender using the filter.
             female_students = Student.objects.filter(sex='F')
 
-            # Создаём связь между таблицами.
+            # We create a link between tables.
             teacher.students.add(*female_students)
 
-    # Инициализируем метод для удаления студента из базы.
+    # Initialize the method for removing a student from the database.
     def delete_some_student(self):
-        # Создаём переменную для выбора по "id".
+        # Create a variable for selection by "id".
         some_student = Student.objects.first()
         return some_student.delete()
