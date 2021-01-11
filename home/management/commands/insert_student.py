@@ -1,6 +1,8 @@
+import uuid
+
 from django.core.management import BaseCommand
 from faker import Faker
-from home.models import Student
+from home.models import Student, Subject, Book, Teacher
 
 
 # Файл "insert_student.py" является местом,
@@ -22,21 +24,38 @@ class Command(BaseCommand):
         faker = Faker()
 
         for _ in range(options['len']):
-            student = Student()
+            subject, _ = Subject.objects.get_or_create(title='Python')
+            subject.save()
 
-            # Присваиваем рандомные значения с помощью
-            # библиотеки "Faker".
-            student.name = faker.name()
-            student.surname = faker.last_name()
-            student.age = faker.random_int(min=18, max=53)
-            student.sex = faker.simple_profile()['sex']
-            student.address = faker.address()
-            student.description = faker.text()
-            student.birthday = faker.simple_profile()['birthdate']
-            student.email = faker.email()
+            book = Book()
+            book.title = uuid.uuid4()
+            book.save()
 
-            # Сохраняем значения
-            student.save()
+            # student = Student()
+
+            # # Присваиваем рандомные значения с помощью
+            # # библиотеки "Faker".
+            # student.name = faker.name()
+            # student.surname = faker.last_name()
+            # student.age = faker.random_int(min=18, max=53)
+            # student.sex = faker.simple_profile()['sex']
+            # student.address = faker.address()
+            # student.description = faker.text()
+            # student.birthday = faker.simple_profile()['birthdate']
+            # student.email = faker.email()
+            # student.subject = subject
+            #
+            # # Сохраняем значения
+            # student.save()
+
+            teacher, _ = Teacher.objects.get_or_create(name='Fedor')
+            teacher.save()
+
+            # Выбираем с помощью фильтра только женский пол.
+            female_students = Student.objects.filter(sex='F')
+
+            # Создаём связь между таблицами.
+            teacher.students.add(*female_students)
 
     # Инициализируем метод для удаления студента из базы.
     def delete_some_student(self):
