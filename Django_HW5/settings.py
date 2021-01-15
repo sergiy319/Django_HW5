@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -121,6 +123,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Добавляем настройки-константы брокера.
+# Add broker constant settings.
 CELERY_BROKER_URL = 'amqp://localhost'
-CELERY_RESULT_BACKEND = 'rpc://localhost'
+CELERY_RESULT_BACKEND = 'db+sqlite:///celery_results.sqlite3'
+
+# Create timing of command execution.
+CELERY_BEAT_SCHEDULE = {
+    'private_task': {
+        'task': 'home.tasks.chain_pars',
+        'schedule': crontab(hour=12),
+    }
+
+}

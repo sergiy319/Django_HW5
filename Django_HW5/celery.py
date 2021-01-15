@@ -9,9 +9,9 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 
-# Создаём простейшую функцию, чтобы проверить,
-# что селери работает правильно.
-# Оборачиваем её в декоратор.
-@app.task(bind=True)
-def task_test(self):
-    return 2 + 2
+# # Создаём простейшую функцию, чтобы проверить,
+# # что селери работает правильно.
+# # Оборачиваем её в декоратор.
+# @app.task(bind=True)
+# def task_test(self):
+#     return 2 + 2
