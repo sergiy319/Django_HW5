@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from home.views import HomeView, UpdateStudentView
+from home.views import HomeView, UpdateStudentView, CSVView
 from home.views import home as home_view
 from home.views import update_student
 
@@ -27,4 +27,5 @@ urlpatterns = [
     path('student/update/<id>/', update_student, name='update_students'),
     path('class/student/update/<id>/', UpdateStudentView.as_view(),
          name='update_students_class'),
+    path('csv_view', CSVView.as_view(), name='csv_view'),
 ]

@@ -1,7 +1,10 @@
+import csv
+
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.http import HttpResponse
 
 from home.forms import StudentForm
 from home.models import Student
@@ -153,3 +156,30 @@ class HomeView(View):
             student_form.save()
 
         return redirect(reverse('students'))
+
+
+# Create a new class for generating and
+# downloading FSW files.
+class CSVView(View):
+    def get(self, request):
+        response = HttpResponse(content_type="text/csv")
+        # Create an expression in which the file
+        # is available only for download.
+        response['Content-Disposition'] = "attachment; filename=data_students.csv"
+        # Create a response wrapper for writing data.
+        writer_for_response = csv.writer(response)
+        # The first line is the column information line.
+        writer_for_response.writerow(["Name", "Book", "Subject"])
+
+        students = Student.objects.all()
+
+        for student in students:
+            # The rest of the columns are written
+            # as the body of the CSV file.
+            writer_for_response.writerow([
+                student.name,
+                student.book.title if student.book else None,
+                student.subject.title if student.subject else None,
+            ])
+
+        return response

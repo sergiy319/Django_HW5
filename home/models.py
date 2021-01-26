@@ -18,7 +18,21 @@ class Student(models.Model):
     birthday = models.DateField(blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
 
-    subject = models.ForeignKey('home.Subject', on_delete=models.SET_NULL, null=True)
+    subject = models.ForeignKey(
+        'home.Subject',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='students',
+        related_query_name='students',
+    )
+
+    book = models.ForeignKey(
+        'home.Book',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='student',
+        related_query_name='student',
+    )
 
 
 # Create a class "Teacher".
@@ -42,8 +56,6 @@ class Subject(models.Model):
 class Book(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200, blank=True, null=True)
-
-    student = models.OneToOneField('home.Student', on_delete=models.CASCADE, null=True)
 
 
 # Create class "Currency".
