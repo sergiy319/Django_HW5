@@ -1,10 +1,11 @@
 import csv
 
+from django.forms import model_to_dict
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from home.forms import StudentForm
 from home.models import Student
@@ -183,3 +184,21 @@ class CSVView(View):
             ])
 
         return response
+
+
+# Create a new class to display student data
+# in JSON format.
+class JsonView(View):
+    def get(self, request):
+        # Taking a list of students.
+        students = Student.objects.all()
+
+        return JsonResponse({
+            # Converting values through model
+            # instances to dictionaries.
+            "students": list(students.values(
+                "name",
+                "book__title",
+                "subject__title",
+            )),
+        })
