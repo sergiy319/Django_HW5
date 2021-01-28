@@ -135,3 +135,16 @@ CELERY_BEAT_SCHEDULE = {
     }
 
 }
+
+# An SMTP-adapter for sending letters is define.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Email hosting define.
+EMAIL_HOST = 'smtp.gmail.com'
+# Use security app.
+EMAIL_USE_TLS = True
+# Defined SMTP protocol for sending email.
+EMAIL_PORT = 587
+# Email address defined.
+EMAIL_HOST_USER = '1414sergiy@gmail.com'
+# # The password for the email address is define.
+EMAIL_HOST_PASSWORD = 'Chardjou67'

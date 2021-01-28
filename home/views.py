@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 
+from home.emails import send_email
 from home.forms import StudentForm
 from home.models import Student
 
@@ -202,3 +203,11 @@ class JsonView(View):
                 "subject__title",
             )),
         })
+
+
+class SendMailView(View):
+    def get(self, request):
+        # Define a list of email recipients.
+        send_email(recipient_list=['1414sergiy@gmail.com', '319naumovs@gmail.com'])
+
+        return HttpResponse('Email sent!')
