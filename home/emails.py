@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.mail import send_mail
+from django.template.loader import get_template
 
 
 # Create a function for sending email.
@@ -10,4 +11,7 @@ def send_email(recipient_list=None):
 
     email_from = settings.EMAIL_HOST_USER
 
-    send_mail(subject, message, email_from, recipient_list)
+    template = get_template('send_email_test.html')
+
+    send_mail(subject, message, email_from, recipient_list,
+              html_message=template.render())
