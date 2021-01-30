@@ -1,11 +1,11 @@
 import csv
 
-from django.forms import model_to_dict
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.http import HttpResponse, JsonResponse
+from django.views.generic import ListView
 
 from home.emails import send_email
 from home.forms import StudentForm
@@ -17,8 +17,6 @@ def show_string(request):
 
 
 def home(request, *args, **kwargs):
-    # student = Student()
-    # student.save()
 
     if request.method == 'GET':
         students = Student.objects.all()
@@ -211,3 +209,10 @@ class SendMailView(View):
         send_email(recipient_list=['1414sergiy@gmail.com', '319naumovs@gmail.com'])
 
         return HttpResponse('Email sent!')
+
+
+class StudentsView(ListView):
+
+    model = Student
+    template_name = 'students.html'
+
