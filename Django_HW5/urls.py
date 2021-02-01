@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from home.views import CSVView, HomeView, JsonView, UpdateStudentView
+from home.views import (CSVView, HomeView, JsonView, SendMailView,
+                        StudentsCreateView, StudentsDeleteView,
+                        StudentsUpdateView, StudentsView, UpdateStudentView)
 from home.views import home as home_view
 from home.views import update_student
 
@@ -29,4 +31,12 @@ urlpatterns = [
          name='update_students_class'),
     path('csv_view', CSVView.as_view(), name='csv_view'),
     path('json_view', JsonView.as_view(), name='json_view'),
+    path('send_email/', SendMailView.as_view(), name='send_email'),
+    path('students_list', StudentsView.as_view(), name='students_list'),
+    path('students_create/', StudentsCreateView.as_view(),
+         name='students_create'),
+    path('students_update/<pk>/', StudentsUpdateView.as_view(),
+         name='students_update'),
+    path('students_delete/<pk>/', StudentsDeleteView.as_view(),
+         name='students_delete'),
 ]
