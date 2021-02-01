@@ -219,7 +219,7 @@ class StudentsView(ListView):
 # Create a class for creating a new post.
 class StudentsCreateView(CreateView):
     model = Student
-    fields = ['name']
+    fields = ['name', 'surname']
     template_name = 'students_create.html'
     success_url = reverse_lazy('students_list')
 
@@ -227,7 +227,7 @@ class StudentsCreateView(CreateView):
 # Create a class for updating a student.
 class StudentsUpdateView(UpdateView):
     model = Student
-    fields = ['name']
+    fields = ['name', 'surname']
     template_name = 'students_update.html'
     success_url = reverse_lazy('students_list')
 

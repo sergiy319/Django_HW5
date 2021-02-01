@@ -37,8 +37,8 @@ def pre_gender_check(sender, instance, **kwargs):  # noqa
 # Создаём функцию сигнала перед удалением.
 # Оборачиваем функцию в декоратор "@receiver".
 # студента "is_active = True" на "is_active = False", и отменять удаление.
-@receiver(pre_delete, sender=Student)
-def pre_delete_check(sender, instance, **kwargs):  # noqa
-    # Действия перед удалением в этой версии не производим.
-    # Вызываем ошибку удаления студента.
-    raise Exception('do not delete')
+# @receiver(pre_delete, sender=Student)
+# def pre_delete_check(sender, instance, **kwargs):  # noqa
+#     # Действия перед удалением в этой версии не производим.
+#     # Вызываем ошибку удаления студента.
+#     raise Exception('do not delete')
