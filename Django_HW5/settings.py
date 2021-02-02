@@ -83,15 +83,7 @@ DATABASES = {
     }
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
-    }
-}
-
 CACHE_TTL = 60 * 15
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -157,4 +149,4 @@ EMAIL_PORT = 587
 # Email address defined.
 EMAIL_HOST_USER = '1414sergiy@gmail.com'
 # # The password for the email address is define.
-EMAIL_HOST_PASSWORD = '*******'
+EMAIL_HOST_PASSWORD = 'Chardjou67'
