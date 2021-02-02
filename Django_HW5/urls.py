@@ -22,6 +22,7 @@ from home.views import (CSVView, HomeView, JsonView, SendMailView,
 from home.views import home as home_view
 from home.views import update_student
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('students/', home_view, name='students'),
