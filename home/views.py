@@ -4,12 +4,12 @@ from time import sleep
 from django.conf import settings
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import cache_page
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from home.emails import send_email
 from home.forms import StudentForm
