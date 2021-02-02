@@ -1,4 +1,5 @@
 import csv
+from time import sleep
 
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
@@ -129,11 +130,12 @@ class UpdateStudentView(View):
             return HttpResponseBadRequest('apparent client error')
 
 
-# Создаём "endpoint" для отображения формочки студента
-# и данными в них которые мы можем изменить.
+# Create an "endpoint" for displaying student
+# forms and data in them that we can change.
 class HomeView(View):
 
     def get(self, request):
+        sleep(20)
         students = Student.objects.all()
 
         student_form = StudentForm()
