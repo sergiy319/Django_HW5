@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
 
@@ -23,13 +24,20 @@ from home.views import update_student
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('students/', home_view, name='students'),
-    path('students/class/', HomeView.as_view(), name='students_class'),
-    path('student/update/<id>/', update_student, name='update_students'),
+    path('students/', home_view,
+         name='students'),
+    path('students/class/', HomeView.as_view(),
+         name='students_class'),
+    path('student/update/<id>/', update_student,
+         name='update_students'),
     path('class/student/update/<id>/', UpdateStudentView.as_view(),
          name='update_students_class'),
-    path('csv_view', CSVView.as_view(), name='csv_view'),
-    path('json_view', JsonView.as_view(), name='json_view'),
-    path('send_email/', SendMailView.as_view(), name='send_email'),
-    path('students_list', StudentsView.as_view(), name='students_list'),
+    path('csv_view', CSVView.as_view(),
+         name='csv_view'),
+    path('json_view', JsonView.as_view(),
+         name='json_view'),
+    path('send_email/', SendMailView.as_view(),
+         name='send_email'),
+    path('students_list', StudentsView.as_view(),
+         name='students_list'),
 ]

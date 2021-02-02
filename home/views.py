@@ -1,11 +1,14 @@
 import csv
 from time import sleep
 
+from django.conf import settings
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.cache import cache_page
 from django.views.generic import ListView
 
 from home.emails import send_email
@@ -18,7 +21,6 @@ def show_string(request):
 
 
 def home(request, *args, **kwargs):
-
     if request.method == 'GET':
         students = Student.objects.all()
 
@@ -130,12 +132,13 @@ class UpdateStudentView(View):
             return HttpResponseBadRequest('apparent client error')
 
 
+# Creates a decorator for class caching.
+@method_decorator(cache_page(settings.CACHE_TTL), name='dispatch')
 # Create an "endpoint" for displaying student
 # forms and data in them that we can change.
 class HomeView(View):
-
     def get(self, request):
-        sleep(20)
+        sleep(10)
         students = Student.objects.all()
 
         student_form = StudentForm()
@@ -214,7 +217,5 @@ class SendMailView(View):
 
 
 class StudentsView(ListView):
-
     model = Student
     template_name = 'students.html'
-

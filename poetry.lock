@@ -248,6 +248,14 @@ pycodestyle = "*"
 six = "*"
 
 [[package]]
+name = "gender-guesser"
+version = "0.4.0"
+description = "Get the gender from first name."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "idna"
 version = "2.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -467,7 +475,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "3845c1e807f15d31e923191b83f669c3d0ce1bf3098f85664bf65e64fbfb7c33"
+content-hash = "1cf3d3db91414ba37af07ae497310ec67f1ba955f043b47eb6858464979cdbad"
 
 [metadata.files]
 amqp = [
@@ -540,6 +548,10 @@ flake8-isort = [
 flake8-print = [
     {file = "flake8-print-4.0.0.tar.gz", hash = "sha256:5afac374b7dc49aac2c36d04b5eb1d746d72e6f5df75a6ecaecd99e9f79c6516"},
     {file = "flake8_print-4.0.0-py3-none-any.whl", hash = "sha256:6c0efce658513169f96d7a24cf136c434dc711eb00ebd0a985eb1120103fe584"},
+]
+gender-guesser = [
+    {file = "gender-guesser-0.4.0.tar.gz", hash = "sha256:1591c14592805ca7da06a46d5f7202511f7cb87547049a68dfccbeedb879f31b"},
+    {file = "gender_guesser-0.4.0-py2.py3-none-any.whl", hash = "sha256:7cb01ce5d8d43b94573498bc02c959b622872abd399622ca67d1b73ba6e7e222"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
