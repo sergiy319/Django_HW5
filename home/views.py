@@ -223,8 +223,6 @@ class StudentsView(ListView):
     model = Student
     template_name = 'students.html'
 
-<< << << < HEAD
-== == == =
 
 # Create a class for creating a new post.
 class StudentsCreateView(CreateView):
@@ -247,5 +245,3 @@ class StudentsDeleteView(DeleteView):
     model = Student
     template_name = 'students_delete.html'
     success_url = reverse_lazy('students_list')
-
->> >> >> > master
