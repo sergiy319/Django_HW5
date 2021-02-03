@@ -5,10 +5,12 @@ from django.conf import settings
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
+
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import cache_page
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from home.emails import send_email
@@ -216,6 +218,34 @@ class SendMailView(View):
         return HttpResponse('Email sent!')
 
 
+# Create a class to display a list of students by name.
 class StudentsView(ListView):
     model = Student
     template_name = 'students.html'
+
+<< << << < HEAD
+== == == =
+
+# Create a class for creating a new post.
+class StudentsCreateView(CreateView):
+    model = Student
+    fields = ['name', 'surname']
+    template_name = 'students_create.html'
+    success_url = reverse_lazy('students_list')
+
+
+# Create a class for updating a student.
+class StudentsUpdateView(UpdateView):
+    model = Student
+    fields = ['name', 'surname']
+    template_name = 'students_update.html'
+    success_url = reverse_lazy('students_list')
+
+
+# Create a class for deleting a student.
+class StudentsDeleteView(DeleteView):
+    model = Student
+    template_name = 'students_delete.html'
+    success_url = reverse_lazy('students_list')
+
+>> >> >> > master

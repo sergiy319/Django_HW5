@@ -149,4 +149,4 @@ EMAIL_PORT = 587
 # Email address defined.
 EMAIL_HOST_USER = '1414sergiy@gmail.com'
 # # The password for the email address is define.
-EMAIL_HOST_PASSWORD = 'Chardjou67'
+EMAIL_HOST_PASSWORD = ''
