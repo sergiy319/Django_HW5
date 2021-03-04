@@ -5,7 +5,7 @@ description = ""
 authors = ["Sergiy Naumov <1414sergiy@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 Django = "3.1.4"
 celery = "5.0.5"
 flake8-isort = "4.0.0"
