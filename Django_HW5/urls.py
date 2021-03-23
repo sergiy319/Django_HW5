@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from home.views import (CSVView, HomeView, JsonView, SendMailView,
+from home.views import (CSVView, HomeView, JsonView, SendMailView, SignUpView,
                         StudentsView, UpdateStudentView)
 from home.views import home as home_view
 from home.views import update_student
@@ -32,4 +32,5 @@ urlpatterns = [
     path('json_view', JsonView.as_view(), name='json_view'),
     path('send_email/', SendMailView.as_view(), name='send_email'),
     path('students_list', StudentsView.as_view(), name='students_list'),
+    path('sign_up', SignUpView.as_view(), name='sign_up'),
 ]

@@ -8,8 +8,21 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import ListView
 
 from home.emails import send_email
-from home.forms import StudentForm
+from home.forms import StudentForm, UserSignUpForm
 from home.models import Student
+
+
+class SignUpView(View):
+
+    def get(self, request):
+        sign_up_form = UserSignUpForm()
+
+        return render(request, 'sign_up.html', context={
+            'form': sign_up_form,
+        })
+
+    def post(self, request):
+        pass
 
 
 def show_string(request):
@@ -17,7 +30,6 @@ def show_string(request):
 
 
 def home(request, *args, **kwargs):
-
     if request.method == 'GET':
         students = Student.objects.all()
 
@@ -159,7 +171,7 @@ class HomeView(View):
 
 
 # Create a new class for generating and
-# downloading FSW files.
+# downloading CSW files.
 class CSVView(View):
     def get(self, request):
         response = HttpResponse(content_type="text/csv")
@@ -212,7 +224,5 @@ class SendMailView(View):
 
 
 class StudentsView(ListView):
-
     model = Student
     template_name = 'students.html'
-
