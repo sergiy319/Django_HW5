@@ -1,11 +1,14 @@
 import csv
 
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import ListView
@@ -65,6 +68,32 @@ class ActivateView(View):
             return HttpResponse('token checked')
 
         return HttpResponse('Your account activated')
+
+
+class SignInView(View):
+
+    def get(self, request):
+        auth_form = AuthenticationForm()
+
+        return render(request, 'sign_in.html', context={
+            'form': auth_form,
+        })
+
+    def post(self, request):
+        auth_form = AuthenticationForm(request.POST)
+        user_a = authenticate(request=request,
+                              username=request.POST.get('username'),
+                              password=request.POST.get('password'))
+        login(request, user_a)
+
+        return redirect('/')
+
+
+class SignOutView(View):
+
+    def get(self, request):
+        logout(request)
+        return HttpResponse('Logouted')
 
 
 def show_string(request):

@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path
 
 from home.views import (ActivateView, CSVView, HomeView, JsonView,
-                        SendMailView, SignUpView, StudentsView,
-                        UpdateStudentView)
+                        SendMailView, SignInView, SignOutView, SignUpView,
+                        StudentsView, UpdateStudentView)
 from home.views import home as home_view
 from home.views import update_student
 
@@ -34,6 +34,8 @@ urlpatterns = [
     path('send_email/', SendMailView.as_view(), name='send_email'),
     path('students_list', StudentsView.as_view(), name='students_list'),
     path('sign_up', SignUpView.as_view(), name='sign_up_view'),
+    path('sign_out', SignOutView.as_view(), name='sign_out_view'),
+    path('login', SignInView.as_view(), name='login_view'),
     path('activate/<uid>/<token>', ActivateView.as_view(),
          name='activate_view'),
 ]
