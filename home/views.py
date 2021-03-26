@@ -18,6 +18,9 @@ from home.forms import StudentForm, UserSignUpForm
 from home.models import Student
 
 
+# Create a page that will register a user, make
+# it inactive, and then send an email a link with
+# an authorization token to activate the user.
 class SignUpView(View):
 
     def get(self, request):
@@ -52,6 +55,8 @@ class SignUpView(View):
         return HttpResponse("Wrong Data")
 
 
+# Create a page when switching from a message to which
+# the user must activate and log into the system.
 class ActivateView(View):
 
     def get(self, request, uid, token):
@@ -70,6 +75,8 @@ class ActivateView(View):
         return HttpResponse('Your account activated')
 
 
+# Create a page for checking username, password
+# and if all is well log in the user.
 class SignInView(View):
 
     def get(self, request):
@@ -89,6 +96,8 @@ class SignInView(View):
         return redirect('/')
 
 
+# We create a page that will clear
+# user authorization.
 class SignOutView(View):
 
     def get(self, request):
