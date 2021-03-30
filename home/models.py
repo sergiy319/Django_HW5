@@ -15,6 +15,7 @@ class Student(models.Model):
     sex = models.CharField(max_length=200, blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    picture = models.ImageField(upload_to='student_photos/', null=True)
     birthday = models.DateField(blank=True, null=True)
     email = models.EmailField(max_length=254, blank=True, null=True)
 

@@ -53,6 +53,10 @@ MIDDLEWARE = [
     'Django_HW5.middleware.IdentifyResponseMiddleware',
 ]
 
+
+MEDIA_ROOT = '/Users/naumov/Desktop/all/HomeWork_5/Django_HW5/media'
+MEDIA_URL = 'media/'
+
 ROOT_URLCONF = 'Django_HW5.urls'
 
 TEMPLATES = [
