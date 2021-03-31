@@ -4,17 +4,18 @@ from django.forms import ModelForm
 from home.models import Student
 
 
-# Создаём класс "StudentForm", который наследуется
-# от "BaseForm" и отвечает за создание формы на вебе
+# Create a class "StudentForm", which is inherited
+# from "BaseForm" and is responsible for creating
+# a form on the web.
 class StudentForm(ModelForm):
-    # Прописываем откаой модели "StudentForm" будет
-    # черпать информацию. Для этого создаём "class Meta"
+    # Prescribe the "StudentForm" model to take the
+    # information. To do this, create a "class Meta".
     class Meta:
         model = Student
-        # Сохраняем в "fields" взятые из "models.py"
-        # поля, которые хотим отобразить
+        # Save in "fields" the fields that we want
+        # to display taken from "models.py".
         fields = ['name', 'surname', 'social_url', 'age', 'sex', 'address',
-                  'description', 'birthday', 'email'
+                  'description', 'birthday', 'email', 'picture'
                   ]
 
 
